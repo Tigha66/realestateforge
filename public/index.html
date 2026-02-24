@@ -6,17 +6,26 @@
   <title>RealEstateForge - Real Estate Ops Bot</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script>tailwind.config={theme:{extend:{animation:{'float':'float 6s ease-in-out infinite'}}}}</script>
-  <style>@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}.glass{background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1)}.gradient-text{background:linear-gradient(135deg,#f59e0b,#ef4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent}</style>
+  <style>
+    .glass{background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1)}
+    .gradient-text{background:linear-gradient(135deg,#f59e0b,#ef4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  </style>
 </head>
 <body class="bg-[#0a0a0f] min-h-screen text-white">
-  <div class="fixed inset-0 overflow-hidden pointer-events-none"><div class="absolute w-96 h-96 bg-orange-600/20 rounded-full blur-3xl -top-20 -left-20 animate-float"></div></div>
-  <header class="relative z-10 glass sticky top-0">
+  <header class="glass sticky top-0">
     <div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
-      <div class="flex items-center gap-4"><div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shadow-lg"><i class="fas fa-home text-2xl"></i></div><div><h1 class="text-2xl font-bold gradient-text">RealEstateForge</h1><p class="text-xs text-slate-400">Real Estate Operations</p></div></div>
+      <div class="flex items-center gap-4">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shadow-lg">
+          <i class="fas fa-home text-2xl"></i>
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold gradient-text">RealEstateForge</h1>
+          <p class="text-xs text-slate-400">Real Estate Operations</p>
+        </div>
+      </div>
     </div>
   </header>
-  <main class="relative z-10 max-w-7xl mx-auto px-8 py-10">
+  <main class="max-w-7xl mx-auto px-8 py-10">
     <div class="grid grid-cols-4 gap-6 mb-10">
       <div class="glass rounded-2xl p-6"><div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 rounded-xl bg-orange-500/20 flex items-center justify-center"><i class="fas fa-building text-orange-400"></i></div><span class="text-slate-400 text-sm">Listings</span></div><p class="text-4xl font-bold">34</p></div>
       <div class="glass rounded-2xl p-6"><div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center"><i class="fas fa-users text-green-400"></i></div><span class="text-slate-400 text-sm">Leads</span></div><p class="text-4xl font-bold">127</p></div>
@@ -24,14 +33,68 @@
       <div class="glass rounded-2xl p-6"><div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center"><i class="fas fa-dollar-sign text-purple-400"></i></div><span class="text-slate-400 text-sm">Revenue</span></div><p class="text-4xl font-bold">$89k</p></div>
     </div>
     <div class="grid lg:grid-cols-3 gap-8">
-      <div class="glass rounded-2xl p-8"><h2 class="text-xl font-bold mb-6"><i class="fas fa-magic text-orange-400 mr-3"></i>Property Brief</h2>
-        <div class="space-y-4"><input placeholder="Property address..." class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-slate-500"><button class="w-full py-4 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl font-semibold"><i class="fas fa-wand-magic-sparkles mr-2"></i>Generate Brief</button></div>
+      <div class="glass rounded-2xl p-8">
+        <h2 class="text-xl font-bold mb-6"><i class="fas fa-magic text-orange-400 mr-3"></i>Property Brief</h2>
+        <div class="space-y-4">
+          <input placeholder="Enter property address..." class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-slate-500">
+          <button class="w-full py-4 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl font-semibold">
+            <i class="fas fa-wand-magic-sparkles mr-2"></i>Generate Brief
+          </button>
+        </div>
       </div>
-      <div class="col-span-2 glass rounded-2xl p-8"><h2 class="text-xl font-bold mb-6"><i class="fas fa-users text-red-400 mr-3"></i>Active Leads</h2>
+      <div class="col-span-2 glass rounded-2xl p-8">
+        <h2 class="text-xl font-bold mb-6"><i class="fas fa-users text-red-400 mr-3"></i>Active Leads</h2>
         <div class="space-y-3">
-          {[{name:'Sarah Johnson',status:'Hot',prop:'123 Main St',time:'2h ago'},{name:'Mike Chen',status:'Warm',prop:'456 Oak Ave',time:'Yesterday'},{name:'Emma Davis',status:'New',prop:'789 Pine Rd',time:'Today'}].map(l=>`
-          <div class="bg-white/5 rounded-xl p-4 flex items-center justify-between"><div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center font-bold">${l.name.charAt(0)}</div><div><p class="font-semibold">${l.name}</p><p class="text-slate-400 text-sm">${l.prop}</p></div></div><span class="px-3 py-1 rounded-lg text-xs ${l.status==='Hot'?'bg-red-500/20 text-red-400':l.status==='Warm'?'bg-orange-500/20 text-orange-400':'bg-blue-500/20 text-blue-400'}">${l.status}</span></div>
-          `).join('')}
+          <div class="bg-white/5 rounded-xl p-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center font-bold">S</div>
+              <div>
+                <p class="font-semibold">Sarah Johnson</p>
+                <p class="text-slate-400 text-sm">742 Evergreen Terrace</p>
+              </div>
+            </div>
+            <span class="px-3 py-1 rounded-lg text-xs bg-red-500/20 text-red-400">Hot</span>
+          </div>
+          <div class="bg-white/5 rounded-xl p-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center font-bold">M</div>
+              <div>
+                <p class="font-semibold">Michael Chen</p>
+                <p class="text-slate-400 text-sm">1600 Pennsylvania Ave</p>
+              </div>
+            </div>
+            <span class="px-3 py-1 rounded-lg text-xs bg-orange-500/20 text-orange-400">Warm</span>
+          </div>
+          <div class="bg-white/5 rounded-xl p-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center font-bold">E</div>
+              <div>
+                <p class="font-semibold">Emma Williams</p>
+                <p class="text-slate-400 text-sm">221B Baker Street</p>
+              </div>
+            </div>
+            <span class="px-3 py-1 rounded-lg text-xs bg-blue-500/20 text-blue-400">New</span>
+          </div>
+          <div class="bg-white/5 rounded-xl p-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center font-bold">J</div>
+              <div>
+                <p class="font-semibold">James Rodriguez</p>
+                <p class="text-slate-400 text-sm">350 Fifth Avenue</p>
+              </div>
+            </div>
+            <span class="px-3 py-1 rounded-lg text-xs bg-orange-500/20 text-orange-400">Warm</span>
+          </div>
+          <div class="bg-white/5 rounded-xl p-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center font-bold">A</div>
+              <div>
+                <p class="font-semibold">Amanda Foster</p>
+                <p class="text-slate-400 text-sm">1 Infinite Loop</p>
+              </div>
+            </div>
+            <span class="px-3 py-1 rounded-lg text-xs bg-blue-500/20 text-blue-400">New</span>
+          </div>
         </div>
       </div>
     </div>
